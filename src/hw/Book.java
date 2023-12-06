@@ -26,13 +26,16 @@ public class Book extends LibraryItem {
 	}
 
 	public double borrowingCharge() {
-
-		return 0;
+		return BORROWING_CHARGE_PER_DAY * getDifferenceInDays();
 	}
 
 	public double lateCharge() {
+		return (exceed()) ? LATE_CHARGE : 0;
+	}
 
-		return 0;
+	@Override
+	public boolean exceed() {
+		return (getDifferenceInDays() <= ALLOWED_BORROWING_DAYS) ? false : true;
 	}
 
 	@Override
@@ -44,12 +47,10 @@ public class Book extends LibraryItem {
 		return false;
 	}
 
+	@Override
 	public String toString() {
-		return "Item Number: " + getItemNumber();
+		return "Item Number: " + getItemNumber() + " Title: " + getTitle() + " Item Type: " + getClass().getSimpleName()
+				+ " Borrowing Days: " + getDifferenceInDays() + " days " + "Exceed: " + getExceedString() + " Total Price: $" + totalPrice();
 	}
 
-	@Override
-	public boolean exceed() {
-		return (getDifferenceInDays() <= ALLOWED_BORROWING_DAYS) ? false : true;
-	}
 }

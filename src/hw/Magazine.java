@@ -23,28 +23,35 @@ public class Magazine extends LibraryItem {
 			System.out.println("Magazine cannot be found!");
 			System.exit(0);
 		}
-
 	}
 
 	@Override
 	public double borrowingCharge() {
-
-		return 0;
+		return BORROWING_CHARGE_PER_DAY * getDifferenceInDays();
 	}
 
 	@Override
 	public double lateCharge() {
-		return 0;
+		return (exceed()) ? LATE_CHARGE : 0;
 	}
 
 	@Override
 	public boolean exceed() {
 		return (getDifferenceInDays() <= ALLOWED_BORROWING_DAYS) ? false : true;
 	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if (super.equals(o)) {
+			Magazine otherMagazine = (Magazine) o;
+			return genre.equals(otherMagazine.genre) && producer.equals(otherMagazine.producer);
+		}
+		return false;
+	}
 
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return null;
+		return "Item Number: " + getItemNumber() + " Title: " + getTitle() + " Item Type: " + getClass().getSimpleName()
+				+ " Borrowing Days: " + getDifferenceInDays() + " days " + "Exceed: " + getExceedString() + "Total Price: $" + totalPrice();
 	}
 }

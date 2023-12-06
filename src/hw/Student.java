@@ -9,4 +9,5 @@ public abstract class Student extends Member {
 	public Student(double discount) {
 		super(discount);
 	}
+	
 }

@@ -35,8 +35,8 @@ public abstract class LibraryItem implements Borrowing, Searchable {
 		this.title = item.title;
 		this.priority = item.priority;
 		this.customerType = item.customerType;
-		this.startBorrow = startBorrow;
-		this.endBorrow = endBorrow;
+		this.startBorrow = item.startBorrow;
+		this.endBorrow = item.endBorrow;
 	}
 
 	public int getDifferenceInDays() {
@@ -44,10 +44,12 @@ public abstract class LibraryItem implements Borrowing, Searchable {
 	}
 
 	public abstract boolean exceed();
-	
-	//DEFINE LATER
+
 	public String getExceedString() {
-		return "";
+		if (exceed())
+			return "Exceeds";
+		else
+			return "Not Exceeds";
 	}
 
 	public int getItemNumber() {
