@@ -2,6 +2,6 @@ package hw;
 
 public interface Searchable {
 
-//	public String search(String title);
-//	public String search(String title, String itemType);
+	public boolean exists(String title);
+	public boolean exists(String title, String itemType);
 }

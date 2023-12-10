@@ -43,6 +43,7 @@ public class FileIO {
 			String[] data = line.split(";");
 			for (String d : data) {
 				d = d.trim();
+//				System.out.println(d);
 			}
 
 			int itemNumber = Integer.parseInt(data[ITEM_NUMBER_INDEX]);

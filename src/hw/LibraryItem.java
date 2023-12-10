@@ -109,6 +109,17 @@ public abstract class LibraryItem implements Borrowing, Searchable {
 	}
 
 	@Override
+	public boolean exists(String title) {
+		return this.title.equalsIgnoreCase(title);
+	}
+	
+	@Override
+	public boolean exists(String title, String itemType) {
+		return this.title.equalsIgnoreCase(title) &&
+			   getClass().getSimpleName().equalsIgnoreCase(itemType);
+	}
+
+	@Override
 	public boolean equals(Object o) {
 		if (o == null)
 			return false;
